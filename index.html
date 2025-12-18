@@ -61,5 +61,46 @@
             });
         }
     </script>
+    <!-- Кнопка установки PWA для Android -->
+<button id="installButton" class="install-btn" style="display: none;">
+    📲 Установить приложение
+</button>
+
+<script>
+// Кнопка установки PWA
+let deferredPrompt;
+const installButton = document.getElementById('installButton');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Предотвращаем автоматическое показ
+    e.preventDefault();
+    deferredPrompt = e;
+    
+    // Показываем нашу кнопку
+    installButton.style.display = 'block';
+    
+    installButton.addEventListener('click', () => {
+        // Скрываем кнопку
+        installButton.style.display = 'none';
+        
+        // Показываем нативное окно установки
+        deferredPrompt.prompt();
+        
+        // Ждем ответа пользователя
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('Пользователь установил приложение');
+            }
+            deferredPrompt = null;
+        });
+    });
+});
+
+// Если уже установлено - скрываем кнопку
+window.addEventListener('appinstalled', () => {
+    installButton.style.display = 'none';
+    deferredPrompt = null;
+});
+</script>
 </body>
 </html>

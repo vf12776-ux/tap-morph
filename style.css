@@ -107,3 +107,39 @@ body {
 #character:active {
     animation: pulse 0.2s ease;
 }
+/* Стили для нового SVG персонажа */
+#character {
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+    transition: all 0.3s ease;
+}
+
+#head {
+    transition: fill 0.3s ease;
+}
+
+#eye-left-bg, #eye-right-bg {
+    transition: all 0.2s ease;
+}
+
+#pupil-left, #pupil-right {
+    transition: all 0.2s ease;
+}
+
+#mouth {
+    transition: d 0.3s ease;
+}
+
+#brow-left, #brow-right {
+    transition: d 0.3s ease;
+}
+
+/* Анимация при тапе */
+@keyframes gentleTap {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.97); }
+    100% { transform: scale(1); }
+}
+
+#character:active {
+    animation: gentleTap 0.2s ease;
+}

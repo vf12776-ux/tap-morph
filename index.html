@@ -16,12 +16,35 @@
 </head>
 <body>
     <div class="container">
-        <img id="character" src="icons/icon-192.png" width="300" height="300" 
-     alt="Персонаж" style="cursor: pointer; border-radius: 50%;">
+        <svg id="character" viewBox="0 0 100 100" width="300" height="300">
+            <ellipse id="head" cx="50" cy="50" rx="35" ry="40" fill="#FFCCAA" stroke="#E6B89C" stroke-width="2"/>
+            
+            <path d="M 30 25 Q 20 15 25 10 Q 30 5 35 15" fill="#FFCCAA" stroke="#E6B89C" stroke-width="1.5"/>
+            <path d="M 70 25 Q 80 15 75 10 Q 70 5 65 15" fill="#FFCCAA" stroke="#E6B89C" stroke-width="1.5"/>
+            
+            <g id="eyes">
+                <ellipse id="eye-left-bg" cx="40" cy="45" rx="6" ry="8" fill="#FFFFFF"/>
+                <circle id="pupil-left" cx="40" cy="45" r="3" fill="#3366CC"/>
+                <circle cx="41" cy="44" r="1" fill="#FFFFFF" opacity="0.8"/>
+                
+                <ellipse id="eye-right-bg" cx="60" cy="45" rx="6" ry="8" fill="#FFFFFF"/>
+                <circle id="pupil-right" cx="60" cy="45" r="3" fill="#3366CC"/>
+                <circle cx="61" cy="44" r="1" fill="#FFFFFF" opacity="0.8"/>
+            </g>
+            
+            <path id="brow-left" d="M 33 35 Q 38 32 43 35" stroke="#8B7355" stroke-width="2" fill="none"/>
+            <path id="brow-right" d="M 57 35 Q 62 32 67 35" stroke="#8B7355" stroke-width="2" fill="none"/>
+            
+            <path id="mouth" d="M 40 68 Q 50 73 60 68" stroke="#CC6666" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            
+            <ellipse cx="50" cy="55" rx="3" ry="2" fill="#FF9999"/>
+            
+            <ellipse cx="35" cy="55" rx="4" ry="3" fill="#FFB6C1" opacity="0.4"/>
+            <ellipse cx="65" cy="55" rx="4" ry="3" fill="#FFB6C1" opacity="0.4"/>
+        </svg>
         
         <div class="hint">Коснись экрана</div>
         
-        <!-- Скрытая кнопка звука для мамы -->
         <button id="sound-toggle" class="sound-btn" aria-label="Звук вкл/выкл">
             🔈
         </button>
@@ -29,7 +52,6 @@
 
     <script src="app.js"></script>
     
-    <!-- Регистрация Service Worker -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {

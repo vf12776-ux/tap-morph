@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Морфик</title>
+    <meta name="theme-color" content="#ffc0cb">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icons/icon-192.png">
+    
+    <!-- PWA-метатеги для iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Морфик">
+</head>
+<body>
+    <div class="container">
+        <img id="character" src="icons/icon-192.png" width="300" height="300" 
+     alt="Персонаж" style="cursor: pointer; border-radius: 50%;">
+        
+        <div class="hint">Коснись экрана</div>
+        
+        <!-- Скрытая кнопка звука для мамы -->
+        <button id="sound-toggle" class="sound-btn" aria-label="Звук вкл/выкл">
+            🔈
+        </button>
+    </div>
+
+    <script src="app.js"></script>
+    
+    <!-- Регистрация Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .catch(err => console.log('ServiceWorker не регистрируется: ', err));
+            });
+        }
+    </script>
+</body>
+</html>

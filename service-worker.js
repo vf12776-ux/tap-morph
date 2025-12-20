@@ -1,18 +1,29 @@
-const CACHE_NAME = 'morph-v2000';
+const CACHE_NAME = 'morph-v5';
 const urlsToCache = [
-    './',
-    './index.html',
-    './style.css',
-    './app.js',
-    './manifest.json',
-    './icons/icon-192.png',
-    './icons/icon-512.png'
+    '/tap-morph/',
+    '/tap-morph/index.html',
+    '/tap-morph/style.css',
+    '/tap-morph/app.js',
+    '/tap-morph/manifest.json',
+    '/tap-morph/icons/icon-192.png',
+    '/tap-morph/icons/icon-512.png'
 ];
 
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(cache => cache.addAll(urlsToCache))
+            .then(() => self.skipWaiting())
+    );
+});
+
+self.addEventListener('activate', event => {
+    event.waitUntil(
+        caches.keys().then(keys => 
+            Promise.all(keys.map(key => 
+                key !== CACHE_NAME ? caches.delete(key) : null
+            ))
+        ).then(() => self.clients.claim())
     );
 });
 

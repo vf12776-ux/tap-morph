@@ -1,4 +1,4 @@
-const CACHE_NAME = 'morph-v8';  // v8 вместо v5 (новая версия)
+const CACHE_NAME = 'morph-v10';  // v8 вместо v5 (новая версия)
 const urlsToCache = [
     './',                    // вместо '/tap-morph/'
     './index.html',          // вместо '/tap-morph/index.html'

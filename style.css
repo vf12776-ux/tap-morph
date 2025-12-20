@@ -3,8 +3,6 @@
     padding: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
-    -webkit-user-select: none;
-    user-select: none;
 }
 
 body {
@@ -14,13 +12,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    touch-action: manipulation;
 }
 
 .container {
     text-align: center;
-    position: relative;
 }
 
 #character {
@@ -28,18 +23,12 @@ body {
     margin: 0 auto;
     cursor: pointer;
     filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
-    transition: transform 0.3s ease;
-}
-
-#character:active {
-    transform: scale(0.95);
 }
 
 .hint {
     margin-top: 30px;
     color: #666;
     font-size: 18px;
-    opacity: 0.7;
     animation: pulse 2s infinite;
 }
 
@@ -60,90 +49,8 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     font-size: 24px;
     cursor: pointer;
-    z-index: 100;
-    transition: all 0.3s ease;
 }
 
-.sound-btn:hover {
-    transform: scale(1.1);
-}
-
-.sound-btn.muted {
-    opacity: 0.5;
-}
-
-/* Адаптивность */
-@media (max-width: 600px) {
-    #character {
-        width: 250px;
-        height: 250px;
-    }
-    
-    .hint {
-        font-size: 16px;
-        margin-top: 20px;
-    }
-}
-/* Стили для картинки-персонажа */
-#character {
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
-    border: 8px solid white;
-}
-
-#character:hover {
-    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-}
-
-/* Анимация при тапе */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(0.95); }
-    100% { transform: scale(1); }
-}
-
-#character:active {
-    animation: pulse 0.2s ease;
-}
-/* Стили для нового SVG персонажа */
-#character {
-    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
-    transition: all 0.3s ease;
-}
-
-#head {
-    transition: fill 0.3s ease;
-}
-
-#eye-left-bg, #eye-right-bg {
-    transition: all 0.2s ease;
-}
-
-#pupil-left, #pupil-right {
-    transition: all 0.2s ease;
-}
-
-#mouth {
-    transition: d 0.3s ease;
-}
-
-#brow-left, #brow-right {
-    transition: d 0.3s ease;
-}
-
-/* Анимация при тапе */
-@keyframes gentleTap {
-    0% { transform: scale(1); }
-    50% { transform: scale(0.97); }
-    100% { transform: scale(1); }
-}
-
-#character:active {
-    animation: gentleTap 0.2s ease;
-}
-/* Кнопка установки */
 .install-btn {
     position: fixed;
     bottom: 20px;
@@ -158,10 +65,4 @@ body {
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     z-index: 1000;
-    transition: all 0.3s ease;
-}
-
-.install-btn:hover {
-    transform: translateX(-50%) scale(1.05);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }

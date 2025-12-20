@@ -1,6 +1,7 @@
-const CACHE_NAME = 'morph-v1';
+const CACHE_NAME = 'morph-v2';
 const urlsToCache = [
     './',
+    'index.html',
     './index.html',
     './style.css',
     './app.js',

@@ -2,7 +2,7 @@
     "name": "Морфик",
     "short_name": "Морфик",
     "description": "Волшебный персонаж, который меняется от прикосновений",
-    "start_url": "./index.html",
+    "start_url": ".",
     "scope": "./",
     "display": "standalone",
     "background_color": "#f5f7fa",

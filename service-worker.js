@@ -1,4 +1,4 @@
-const CACHE_NAME = 'morph-v3'; 
+const CACHE_NAME = 'morph-v5'; 
 const urlsToCache = [
     '/tap-morph/',
     '/tap-morph/index.html',

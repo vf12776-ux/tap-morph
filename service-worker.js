@@ -1,13 +1,12 @@
-const CACHE_NAME = 'morph-v2';
+const CACHE_NAME = 'morph-v3'; 
 const urlsToCache = [
-    './',
-    'index.html',
-    './index.html',
-    './style.css',
-    './app.js',
-    './manifest.json',
-    './icons/icon-192.png',
-    './icons/icon-512.png'
+    '/tap-morph/',
+    '/tap-morph/index.html',
+    '/tap-morph/style.css',
+    '/tap-morph/app.js',
+    '/tap-morph/manifest.json',
+    '/tap-morph/icons/icon-192.png',
+    '/tap-morph/icons/icon-512.png'
 ];
 
 // Установка Service Worker

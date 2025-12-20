@@ -1,9 +1,17 @@
 const character = document.getElementById('character');
 const soundToggle = document.getElementById('sound-toggle');
-const tapSound = document.getElementById('tap-sound');
 
 let soundEnabled = true;
+let tapSound = null; // Звук загрузим один раз
 
+// Загрузка звука (один раз при первом тапе)
+function loadSound() {
+    if (tapSound) return;
+    tapSound = new Audio('sounds/i951.mp3');
+    tapSound.volume = 0.8; // Громкость для детей
+}
+
+// Переключатель
 soundToggle.onclick = function() {
     soundEnabled = !soundEnabled;
     this.textContent = soundEnabled ? '🔊' : '🔈';
@@ -12,13 +20,17 @@ soundToggle.onclick = function() {
 function playTapSound() {
     if (!soundEnabled || !tapSound) return;
     tapSound.currentTime = 0;
-    tapSound.play().catch(e => console.log("Ошибка звука:", e));
+    tapSound.play().catch(e => console.log("Звук не сыграл:", e));
 }
 
 function morph() {
+    loadSound(); // Загрузим при первом тапе
+
+    // Анимация нажатия
     character.style.transform = 'scale(0.95)';
     setTimeout(() => character.style.transform = 'scale(1)', 200);
 
+    // Морфинг
     const hue = Math.floor(Math.random() * 360);
     const rotate = Math.random() * 40 - 20;
     const scale = 0.9 + Math.random() * 0.3;
@@ -31,7 +43,7 @@ function morph() {
         character.style.transform = 'scale(1) rotate(0deg)';
     }, 1000);
 
-    playTapSound();  // Звук здесь
+    playTapSound(); // Звук!
 }
 
 character.onclick = morph;

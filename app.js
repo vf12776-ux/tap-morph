@@ -2,16 +2,31 @@ const character = document.getElementById('character');
 const soundToggle = document.getElementById('sound-toggle');
 
 let soundEnabled = true;
-let tapSound = null; // Звук загрузим один раз
+let tapSound = null;
+let unlocked = false; // Флаг разблокировки аудио
 
-// Загрузка звука (один раз при первом тапе)
 function loadSound() {
     if (tapSound) return;
     tapSound = new Audio('sounds/i951.mp3');
-    tapSound.volume = 0.8; // Громкость для детей
+    tapSound.volume = 0.8;
 }
 
-// Переключатель
+function unlockAudio() {
+    if (unlocked) return;
+    // Пытаемся разблокировать: создаём пустой буфер и играем
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (AudioContext) {
+        const ctx = new AudioContext();
+        const buffer = ctx.createBuffer(1, 1, 22050);
+        const source = ctx.createBufferSource();
+        source.buffer = buffer;
+        source.connect(ctx.destination);
+        source.start(0);
+        if (ctx.state === 'running') unlocked = true;
+    }
+    unlocked = true;
+}
+
 soundToggle.onclick = function() {
     soundEnabled = !soundEnabled;
     this.textContent = soundEnabled ? '🔊' : '🔈';
@@ -24,7 +39,8 @@ function playTapSound() {
 }
 
 function morph() {
-    loadSound(); // Загрузим при первом тапе
+    loadSound();       // Загружаем звук
+    unlockAudio();     // Разблокируем аудио при первом тапе
 
     // Анимация нажатия
     character.style.transform = 'scale(0.95)';
@@ -43,7 +59,7 @@ function morph() {
         character.style.transform = 'scale(1) rotate(0deg)';
     }, 1000);
 
-    playTapSound(); // Звук!
+    playTapSound();    // Твой звук
 }
 
 character.onclick = morph;
